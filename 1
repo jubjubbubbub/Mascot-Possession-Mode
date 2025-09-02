@@ -1,0 +1,38 @@
+public enum MascotType {
+    WickWhiskers,
+    JackpotJoe,
+    ScratchyLuna,
+    MayoMoth,
+    ThePenciler,
+    VinegarTwins
+}
+
+public class MascotPossession : MonoBehaviour {
+    public MascotType currentMascot;
+    public float possessionDuration = 300f;
+    private float timer;
+    private bool isPossessing = false;
+
+    public void StartPossession(MascotType mascot) {
+        currentMascot = mascot;
+        timer = possessionDuration;
+        isPossessing = true;
+        ActivateMascotAbilities(mascot);
+    }
+
+    void Update() {
+        if (isPossessing) {
+            timer -= Time.deltaTime;
+            if (timer <= 0) EndPossession();
+        }
+    }
+
+    void ActivateMascotAbilities(MascotType mascot) {
+        // Add mascot-specific logic here
+    }
+
+    void EndPossession() {
+        isPossessing = false;
+        // Reset mascot state
+    }
+}
